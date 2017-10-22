@@ -33,10 +33,17 @@
     
     CGFloat width = self.textLabel.frame.origin.x + self.textLabel.frame.size.width;
 
+    CGFloat detailTextWidth = 50;
     CGRect remainder, slice;
     CGRectDivide(self.contentView.bounds, &slice, &remainder, width, CGRectMinXEdge);
     CGFloat standardiOSMargin = 10;
+    remainder.size.width -= detailTextWidth;
     self.slider.frame = CGRectInset(remainder, standardiOSMargin, 0);
+  
+    CGRect detailTextLabelRect = remainder;
+    detailTextLabelRect.origin.x += detailTextLabelRect.size.width - standardiOSMargin;
+    detailTextLabelRect.size.width = detailTextWidth;
+    self.detailTextLabel.frame = detailTextLabelRect;
 }
 
 @end
